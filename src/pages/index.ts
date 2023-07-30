@@ -1,3 +1,4 @@
+export * from './App';
 export * from './Home';
 export * from './MyAccount';
 export * from './MyOrders';

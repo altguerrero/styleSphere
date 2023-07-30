@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { ShoppingCartState, useShoppingCartStore } from '@/store/shoppingCartStore';
+
 export const NavCart: React.FC = () => {
-  return <button type="button">🛒 0</button>;
+  const products = useShoppingCartStore((state: ShoppingCartState) => state.products);
+
+  return <button type="button">🛒 {products.length}</button>;
 };
