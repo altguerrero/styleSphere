@@ -11,11 +11,11 @@ export const Navbar: React.FC = () => {
   const activeStyle = 'underline underline-offset-4';
 
   return (
-    <nav className="flex justify-between items-center fixed top-0 z-10 w-full py-5 px-8 text-sm font-light">
+    <nav className="fixed top-0 z-10 flex w-full items-center justify-between px-8 py-5 text-sm font-light">
       <div className="flex items-center gap-3">
         <NavBrand />
         <NavList items={mainMenuItems}>
-          {(item) => (
+          {item => (
             <NavItem to={item.to} activeStyle={activeStyle}>
               {item.name}
             </NavItem>
@@ -25,7 +25,7 @@ export const Navbar: React.FC = () => {
 
       <div className="flex items-center gap-3">
         <NavList items={userMenuItems}>
-          {(item) => (
+          {item => (
             <NavItem to={item.to} activeStyle={activeStyle}>
               {item.name}
             </NavItem>

@@ -8,12 +8,16 @@ interface CardListProps {
   children?: (item: any) => React.ReactNode;
 }
 
-export const CardList: React.FC<CardListProps> = ({ children, render, items }) => {
+export const CardList: React.FC<CardListProps> = ({
+  children,
+  render,
+  items,
+}) => {
   const renderChildren = children || render;
 
   return (
     <section>
-      <ul className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+      <ul className="grid w-full max-w-screen-lg grid-cols-4 gap-4">
         {Boolean(items.length) &&
           items.map((item: IProduct, index: number) => (
             <li key={index}>{renderChildren && renderChildren(item)}</li>

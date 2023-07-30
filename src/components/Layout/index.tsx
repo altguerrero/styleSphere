@@ -10,7 +10,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col mt-20 container mx-auto px-4">{children}</main>
+      <main className="container mx-auto mt-20 flex flex-col px-4">
+        {children}
+      </main>
     </>
   );
 };

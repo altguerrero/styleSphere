@@ -9,15 +9,17 @@ export type ShoppingCartState = {
   clearCart: () => void;
 };
 
-export const useShoppingCartStore = create<ShoppingCartState>((set) => ({
+export const useShoppingCartStore = create<ShoppingCartState>(set => ({
   products: [],
   addToCart: (product: IProduct) =>
-    set((state) => ({
+    set(state => ({
       products: [...state.products, product],
     })),
   removeFromCart: (product: IProduct) =>
-    set((state) => ({
-      products: state.products.filter((currentProduct) => currentProduct.id !== product.id),
+    set(state => ({
+      products: state.products.filter(
+        currentProduct => currentProduct.id !== product.id
+      ),
     })),
   clearCart: () => set({}, true),
 }));

@@ -18,20 +18,25 @@ module.exports = {
     'simple-import-sort',
   ],
   rules: {
-    'no-duplicate-imports': 'error',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    'no-console': 'warn',
+    'no-debugger': 'warn',
+    'no-alert': 'warn',
+
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
     'react/react-in-jsx-scope': 'off',
-    'no-console': 'error',
-    'no-alert': 'error',
-    'react-hooks/exhaustive-deps': 'off',
-    'react/prop-types': 0,
-    'react/display-name': 0,
+
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+
+    'prettier/prettier': 'error',
+
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
-    '@typescript-eslint/no-empty-function': 'off',
-    'react/no-unknown-property': 'off',
-    'react/no-unescaped-entities': 'off',
   },
   settings: {
     'import/resolver': {

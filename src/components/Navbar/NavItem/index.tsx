@@ -7,9 +7,16 @@ interface NavItemProps {
   children: React.ReactNode;
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ children, to, activeStyle }) => {
+export const NavItem: React.FC<NavItemProps> = ({
+  children,
+  to,
+  activeStyle,
+}) => {
   return (
-    <NavLink to={to} className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? activeStyle : undefined)}
+    >
       {children}
     </NavLink>
   );
