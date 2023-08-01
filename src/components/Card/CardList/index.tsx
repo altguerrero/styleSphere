@@ -4,8 +4,8 @@ import { IProduct } from '@/interfaces';
 
 interface CardListProps {
   items: IProduct[];
-  render?: (item: any) => React.ReactNode;
-  children?: (item: any) => React.ReactNode;
+  render?: (item: IProduct) => React.ReactNode;
+  children?: (item: IProduct) => React.ReactNode;
 }
 
 export const CardList: React.FC<CardListProps> = ({
