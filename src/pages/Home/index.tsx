@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import {
   Card,
@@ -18,12 +19,14 @@ import {
 } from '@/store';
 
 export const Home: React.FC = () => {
+  const { category } = useParams<{ category: string }>();
   const { data: currentProducts } = useGetProductsQuery();
 
-  const { addToCart, products } = useShoppingCartStore(
+  const { addToCart, products, closeShoppingCart } = useShoppingCartStore(
     (state: ShoppingCartState) => ({
-      addToCart: state.addToCart,
       products: state.products,
+      addToCart: state.addToCart,
+      closeShoppingCart: state.closeShoppingCart,
     })
   );
 
@@ -39,24 +42,50 @@ export const Home: React.FC = () => {
     closeProductDetail: state.closeProductDetail,
   }));
 
-  const { filteredProducts, prompt, filterByTitle } = useProductFilterStore(
-    (state: ProductFilterState) => ({
-      filteredProducts: state.filteredProducts,
-      prompt: state.prompt,
-      filterByTitle: state.filterByTitle,
-    })
-  );
+  const {
+    filteredProducts,
+    titleSearch,
+    categorySearch,
+    filterByTitle,
+    filterByCategory,
+    filterByCategoryAndTitle,
+    clearFilter,
+  } = useProductFilterStore((state: ProductFilterState) => ({
+    filteredProducts: state.filteredProducts,
+    titleSearch: state.titleSearch,
+    categorySearch: state.categorySearch,
+    filterByTitle: state.filterByTitle,
+    filterByCategory: state.filterByCategory,
+    filterByCategoryAndTitle: state.filterByCategoryAndTitle,
+    clearFilter: state.clearFilter,
+  }));
+
+  useEffect(() => {
+    clearFilter();
+
+    if (category) {
+      filterByCategory(currentProducts ?? [], category);
+    }
+  }, [category, clearFilter, currentProducts, filterByCategory]);
 
   return (
     <div className="flex flex-col items-center gap-4">
       <header className="relative flex w-80 flex-col items-center justify-center gap-4">
         <h1 className="text-xl font-medium">Exclusive Products</h1>
         <SearchBar
-          onHandleSearch={value => filterByTitle(currentProducts || [], value)}
+          value={titleSearch}
+          onHandleSearch={value => {
+            if (category) {
+              filterByCategoryAndTitle(currentProducts ?? [], category, value);
+            } else {
+              filterByTitle(currentProducts ?? [], value);
+            }
+          }}
         />
       </header>
       <main>
-        {!filteredProducts.length && prompt ? (
+        {(!filteredProducts.length && titleSearch) ||
+        (!filteredProducts.length && categorySearch) ? (
           <p className="text-xl font-medium">No products found</p>
         ) : (
           <>
@@ -71,10 +100,14 @@ export const Home: React.FC = () => {
                 <Card
                   productsInCart={products}
                   product={item}
-                  onHandleOpen={openProductDetail}
+                  onHandleOpen={product => {
+                    openProductDetail(product);
+                    closeShoppingCart();
+                  }}
                   onHandleAddToCart={(event, product) => {
                     event.stopPropagation();
                     addToCart(product);
+                    closeProductDetail();
                   }}
                 />
               )}

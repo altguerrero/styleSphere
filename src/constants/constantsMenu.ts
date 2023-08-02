@@ -6,20 +6,20 @@ export const mainMenuItems: IMenu[] = [
     name: 'All',
   },
   {
-    to: '/clothes',
-    name: 'Clothes',
+    to: '/shoes',
+    name: 'Shoes',
   },
   {
     to: '/electronics',
     name: 'Electronics',
   },
   {
-    to: '/furnitures',
-    name: 'Furnitures',
+    to: '/furniture',
+    name: 'Furniture',
   },
   {
-    to: '/toys',
-    name: 'Toys',
+    to: '/clothes',
+    name: 'Clothes',
   },
   {
     to: 'Others',

@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   const activeStyle = 'underline underline-offset-4';
 
   return (
-    <nav className="fixed top-0 z-10 flex w-full items-center justify-between px-8 py-5 text-sm font-light">
+    <nav className="fixed top-0 z-10 flex w-full items-center justify-between bg-white px-8 py-5 text-sm font-light">
       <div className="flex items-center gap-3">
         <NavBrand />
         <NavList items={mainMenuItems}>
